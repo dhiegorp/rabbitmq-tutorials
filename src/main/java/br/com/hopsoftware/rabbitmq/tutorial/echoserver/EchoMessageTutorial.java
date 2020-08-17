@@ -9,7 +9,8 @@ import java.util.Scanner;
  * This example was created based on a rabbitmq`s tutorial.
  * In our case, we`ve tried to create an Echo Server, obtaining messages from the user`s keyboard and
  * send them to a queue that will be consumed - printing the message sent.
- * Messages are sent and comsumed asynchonously.
+ * Messages are sent and comsumed asynchonously, so there are no guarantees that the console will show
+ * the messages sent and received in a sequential way.
  * This example shows the use of rabbimq`s java client for the
  * simplest scenario: a Producer {@link EchoProducer} sends a direct message to a queue
  * (default exchange), to be consumed by a Consumer {@link EchoConsumer}
