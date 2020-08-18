@@ -1,4 +1,4 @@
-package br.com.hopsoftware.rabbitmq.tutorial.echoserver;
+package com.github.dhiegorp.rabbitmq.tutorials.echo;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

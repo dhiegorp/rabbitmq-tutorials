@@ -1,4 +1,4 @@
-package br.com.hopsoftware.rabbitmq.tutorial.echoserver;
+package com.github.dhiegorp.rabbitmq.tutorials.echo;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -26,7 +26,10 @@ public class EchoMessageTutorial {
     private static final String CONFIG_FILE = "echo.properties";
 
 
-
+    /**
+     * Initiate the queue and start both producer and consumer to be used.
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println("Starting 'ECHO SERVER'... ");
 
@@ -39,23 +42,42 @@ public class EchoMessageTutorial {
 
             producer.createQueue();
             consumer.start();
-
-            try(Scanner scanner = new Scanner(System.in)) {
-                System.out.println("To send messages type whatever you want and press return.");
-                System.out.print(">>  ");
-                while(scanner.hasNextLine()) {
-                    producer.sendMessage(scanner.nextLine());
-                    Thread.sleep(250); //just trying to avoid a console print mess
-                    System.out.print(">> ");
-                }
-            }
+            openCMD(producer);
 
         } catch(Exception e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * for test purposes
+     * @param producer
+     * @throws Exception
+     */
+    public static void openCMD(EchoProducer producer) throws Exception{
+        try(Scanner scanner = new Scanner(System.in)) {
+            System.out.println("To send messages, type whatever you want and press return. To finish this program, type 'bye!'");
+            System.out.print(">>  ");
+            String line = null;
+            while(scanner.hasNextLine()) {
+                line = scanner.nextLine();
+                producer.sendMessage(line);
+                Thread.sleep(250); //just trying to avoid a console print mess
+                if("bye!".equalsIgnoreCase(line.trim())) {
+                    System.out.println("Bye!");
+                    System.exit(0);
+                } else {
+                    System.out.print(">> ");
+                }
+            }
+        }
 
+    }
+
+    /**
+     * load config properties
+     * @return
+     */
     public static Properties readConfiguration() {
         System.out.println("\treading configuration...");
         Properties properties = new Properties();
@@ -67,6 +89,11 @@ public class EchoMessageTutorial {
         return properties;
     }
 
+    /**
+     * Set a shutdown hook to release resources
+     * @param consumer
+     * @param producer
+     */
     public static void bindShutdownHook(EchoConsumer consumer, EchoProducer producer) {
         System.out.println("\tbinding shutdown hook...");
         Thread hook = new Thread(() -> {

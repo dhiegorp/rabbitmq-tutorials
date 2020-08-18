@@ -1,4 +1,4 @@
-package br.com.hopsoftware.rabbitmq.tutorial.echoserver;
+package com.github.dhiegorp.rabbitmq.tutorials.echo;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -58,8 +58,12 @@ public class EchoProducer {
 
 
         /**
-         * channel.queueDeclare receives the queue name, durable, exclusive
-         * autoDelete, argument map
+         * channel.queueDeclare receives the
+         * queue name,
+         * durable,
+         * exclusive
+         * autoDelete,
+         * argument map
          */
         channel.queueDeclare(this.queue, false, false, false, null);
     }
@@ -68,6 +72,7 @@ public class EchoProducer {
         channel.basicPublish(this.exchange, this.queue, null, message.getBytes());
         System.out.println("[EchoProducer] Sent : '" + message + "'");
     }
+
 
     public void releaseResources() {
         try {
