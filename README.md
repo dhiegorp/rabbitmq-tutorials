@@ -6,7 +6,7 @@
 Series of simple examples using [rabbitmq] and java inspired by [rabbitmq tutorials website] (not a total rip-off, but almost)
 </td></tr></table>
 
-###"Echo"
+### "Echo"
 One of the simplest use cases for messaging is when a Producer sends a message to a queue that threfore are 
 consumed by a Consumer. 
 
