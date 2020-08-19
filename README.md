@@ -7,7 +7,7 @@ Series of simple examples using [rabbitmq] and java inspired by [rabbitmq tutori
 </td></tr></table>
 
 ### "Echo"
-One of the simplest use cases for messaging is when a Producer sends a message to a queue that threfore are 
+One of the simplest use cases for messaging is when a Producer sends a message to a queue that therefore are 
 consumed by a Consumer. 
 
 ````
